@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/project_form_page.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -15,10 +16,9 @@ class AppDrawer extends StatelessWidget {
             onTap: () => Navigator.pop(context)),
           ListTile(leading: const Icon(Icons.add_box_outlined), title: const Text('Tambah Proyek'),
             onTap: () {
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Form tambah proyek akan segera tersedia.')),
-              );
+              final navigator = Navigator.of(context);
+              navigator.pop();
+              navigator.push(MaterialPageRoute<void>(builder: (_) => const ProjectFormPage()));
             }),
         ])),
       );

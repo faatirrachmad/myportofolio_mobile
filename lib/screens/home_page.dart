@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'project_form_page.dart';
 import '../widgets/action_card.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/info_card.dart';
@@ -44,7 +45,18 @@ class HomePage extends StatelessWidget {
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
                 childAspectRatio: 1.15,
-                children: _actions.map((action) => ActionCard(data: action)).toList(),
+                children: _actions.map((action) => ActionCard(
+                  data: action,
+                  onTap: () {
+                    if (action.title == 'Tambah Proyek') {
+                      Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const ProjectFormPage()));
+                    } else {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(SnackBar(content: Text('Kamu memilih ${action.title}.')));
+                    }
+                  },
+                )).toList(),
               );
             }),
           ]),

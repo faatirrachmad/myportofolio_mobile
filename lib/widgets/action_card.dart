@@ -9,16 +9,17 @@ class ActionCardData {
 }
 
 class ActionCard extends StatelessWidget {
-  const ActionCard({super.key, required this.data});
+  const ActionCard({super.key, required this.data, this.onTap});
 
   final ActionCardData data;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) => Card(
         clipBehavior: Clip.antiAlias,
         color: data.color,
         child: InkWell(
-          onTap: () => ScaffoldMessenger.of(context)
+          onTap: onTap ?? () => ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(content: Text('Kamu memilih ${data.title}.'))),
           child: Semantics(

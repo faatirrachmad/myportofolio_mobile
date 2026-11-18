@@ -1,6 +1,6 @@
 # MyPortfolio Mobile
 
-Aplikasi portofolio pribadi berbasis Flutter untuk menampilkan identitas pemilik portofolio dan menyediakan kartu aksi untuk proyek. Proyek ini melanjutkan aplikasi Flutter yang dibuat pada Tutorial 08 untuk Individual Assignment 7: Basic Flutter.
+Aplikasi portofolio pribadi berbasis Flutter untuk menampilkan identitas pemilik portofolio, menavigasi halaman, dan mengisi formulir proyek. Proyek ini melanjutkan aplikasi Flutter Tutorial 08 dengan materi Tutorial 09: Flutter Navigation, Layouts, Forms, and Input Elements.
 
 ## Fitur
 
@@ -8,7 +8,10 @@ Aplikasi portofolio pribadi berbasis Flutter untuk menampilkan identitas pemilik
 - Menampilkan tiga kartu aksi: Lihat Proyek, Tambah Proyek, dan Logout.
 - Menggunakan warna latar yang berbeda untuk setiap kartu aksi.
 - Menampilkan `SnackBar` yang menyebut nama kartu ketika kartu aksi ditekan.
-- Memisahkan bootstrap aplikasi pada `lib/main.dart` dari halaman utama serta widget portofolio pada `lib/menu.dart`.
+- Menyediakan drawer untuk berpindah ke halaman utama atau formulir tambah proyek.
+- Menavigasikan kartu Tambah Proyek ke formulir dengan `Navigator.push()`.
+- Memvalidasi nama dan deskripsi proyek, lalu menampilkan kategori, teknologi, dan tautan yang diisi pada dialog konfirmasi.
+- Memisahkan halaman di `lib/screens/` dan widget bersama di `lib/widgets/`.
 
 ## Menjalankan aplikasi
 
@@ -29,11 +32,16 @@ flutter analyze
 
 ```text
 lib/
-├── main.dart   # bootstrap MyApp dan konfigurasi MaterialApp
-└── menu.dart   # MyHomePage, InfoCard, ItemHomepage, dan ItemCard
+├── main.dart                  # bootstrap MyApp dan konfigurasi MaterialApp
+├── screens/
+│   ├── menu.dart              # halaman utama dan InfoCard
+│   └── project_form.dart      # formulir proyek dan dialog konfirmasi
+└── widgets/
+    ├── left_drawer.dart       # navigasi halaman utama dan formulir
+    └── project_card.dart     # model ItemHomepage dan kartu aksi
 ```
 
-`MyApp` mengatur tema dan halaman awal. `MyHomePage` menyusun informasi profil dan kartu aksi. `InfoCard` menampilkan satu informasi profil, sedangkan `ItemHomepage` menyimpan data kartu aksi yang digunakan oleh `ItemCard`.
+`MyApp` mengatur tema dan halaman awal. `MyHomePage` menyusun informasi profil dan kartu aksi. `ProjectFormPage` menangani input dan validasi proyek. `LeftDrawer` menyediakan navigasi dari kedua halaman.
 
 ## Jawaban reflektif
 
@@ -65,14 +73,4 @@ lib/
 
 ## Disclosure penggunaan AI
 
-ChatGPT Codex digunakan untuk membantu membaca dan merangkum rubrik, meninjau struktur Flutter yang sudah ada, serta menyusun dokumentasi dan jawaban reflektif di README ini. Implementasi halaman dasar Tugas 7—`main.dart`, `menu.dart`, kartu profil, kartu aksi, dan `SnackBar`—sudah ada pada commit Tutorial 08 sebelum bantuan ini. Fitur Tugas 8 yang sempat dibuat karena PDF yang keliru kemudian dihapus melalui commit koreksi cakupan Tugas 7; riwayat commit sebelumnya tetap dipertahankan.
-
-Strategi prompting adalah memberikan PDF/rubrik sebagai acuan, meminta pemeriksaan terhadap kode yang tersedia, lalu memperbaiki ruang lingkup setelah dokumen tugas yang benar diberikan. Saya mencocokkan deskripsi di README dengan kode Tugas 7 dan tidak mengklaim formulir atau penyimpanan data sebagai fitur aplikasi ini. Jawaban reflektif dibuat sebagai penjelasan konsep dan dikaitkan dengan widget yang benar-benar dipakai proyek.
-
-Ringkasan prompt:
-
-- “Kerjakan sesuai ketentuan penilaian dari tugasnya yang lengkap.”
-- “Harusnya aku ngasih file tugas 7 ini ... tugas 7 yang harusnya dikerjain.”
-- Instruksi lanjutan meminta isi README yang masih membahas Tugas 8 diganti agar sesuai Tugas 7.
-
-Analisis dan penyesuaian akhir tetap perlu dijalankan pada lingkungan Flutter pemilik proyek. Pada sesi ini, perintah Dart/Flutter tidak memberikan keluaran dan menggantung, sehingga hasil `flutter analyze` belum dapat dikonfirmasi.
+ChatGPT Codex digunakan untuk membaca Tutorial 09 beserta rubrik prasyaratnya, meninjau kode awal, menerapkan navigasi, drawer, formulir, validasi, dialog konfirmasi, dan refactoring folder. Implementasi mengikuti [Tutorial 09 PBP UI](https://pbp.cs.ui.ac.id/tutorial/tutorial-9.html). Formulir hanya menampilkan konfirmasi dan belum menyimpan data proyek ke database, sesuai langkah tutorial.

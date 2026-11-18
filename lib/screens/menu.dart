@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:myportofolio_mobile/widgets/left_drawer.dart';
+import 'package:myportofolio_mobile/widgets/project_card.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -18,11 +20,7 @@ class MyHomePage extends StatelessWidget {
       icon: Icons.add_circle,
       color: Color(0xFF4F46E5),
     ),
-    ItemHomepage(
-      name: 'Logout',
-      icon: Icons.logout,
-      color: Color(0xFF0F766E),
-    ),
+    ItemHomepage(name: 'Logout', icon: Icons.logout, color: Color(0xFF0F766E)),
   ];
 
   @override
@@ -35,6 +33,7 @@ class MyHomePage extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
+      drawer: const LeftDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -93,59 +92,6 @@ class InfoCard extends StatelessWidget {
               const SizedBox(height: 8),
               Text(content, textAlign: TextAlign.center),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ItemHomepage {
-  final String name;
-  final IconData icon;
-  final Color color;
-
-  const ItemHomepage({
-    required this.name,
-    required this.icon,
-    required this.color,
-  });
-}
-
-class ItemCard extends StatelessWidget {
-  final ItemHomepage item;
-
-  const ItemCard({super.key, required this.item});
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: item.color,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text('Kamu telah menekan tombol ${item.name}!')),
-            );
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(item.icon, color: Colors.white, size: 30),
-                const SizedBox(height: 8),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
           ),
         ),
       ),
